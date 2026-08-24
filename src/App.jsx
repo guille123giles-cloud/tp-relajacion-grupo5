@@ -142,7 +142,7 @@ function App() {
                   x = [I - R⁻¹·A]·x + R⁻¹·b
                 </div>
                 <p className="text-slate-600 leading-relaxed">
-                  Llamando $M = I - R⁻¹·A$ y $c = R⁻¹·b$, obtenemos el <strong>esquema iterativo general</strong>: $x^{(k+1)} = M \cdot x^{(k)} + c$. 
+                  Llamando M = I - R⁻¹·A y c = R⁻¹·b, obtenemos el <strong>esquema iterativo general</strong>: x⁽ᵏ⁺¹⁾ = M · x⁽ᵏ⁾ + c.  
                   <br/><br/>
                   <strong>Teorema de Convergencia:</strong> Este esquema es convergente si y sólo si el <strong>radio espectral</strong> de la matriz M (su mayor autovalor en valor absoluto) es menor que la unidad.
                 </p>
@@ -163,7 +163,7 @@ function App() {
                   Rᵢ = -xᵢ + ∑ (bᵢⱼ · xⱼ) + cᵢ = 0
                 </div>
                 <p className="text-blue-100 leading-relaxed">
-                  <strong>El gran secreto del método:</strong> En cada iteración, se analiza el vector de Residuos. Se busca el residuo mayor en valor absoluto, por ejemplo $R_k$. Esto nos indica que la variable $x_k$ es la que tiene mayor error. Luego, se "relaja" (corrige) la variable actual sumándole exactamente el valor de su residuo: $x_k^{(nueva)} = x_k^{(vieja)} + R_k$. ¡Al evaluar el sistema con el nuevo valor, el residuo $R_k$ pasará a ser matemáticamente cero!
+                  <strong>El gran secreto del método:</strong> En cada iteración, se analiza el vector de Residuos. Se busca el residuo mayor en valor absoluto, por ejemplo Rₖ. Esto nos indica que la variable xₖ es la que tiene mayor error. Luego, se "relaja" (corrige) la variable actual sumándole exactamente el valor de su residuo: xₖ⁽ⁿᵘᵉᵛᵃ⁾ = xₖ⁽ᵛⁱᵉʲᵃ⁾ + Rₖ. ¡Al evaluar el sistema con el nuevo valor, el residuo Rₖ pasará a ser matemáticamente cero!
                 </p>
               </div>
             </div>

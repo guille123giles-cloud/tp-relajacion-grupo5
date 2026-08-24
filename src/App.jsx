@@ -4,8 +4,8 @@ import {
   Calculator as CalcIcon, 
   ChevronRight, 
   BookOpen, 
-  CheckCircle2, 
-  AlertTriangle,
+  CircleCheck, 
+  TriangleAlert,
   Lightbulb,
   ArrowRight
 } from 'lucide-react';
@@ -219,7 +219,7 @@ function App() {
             <div className="grid md:grid-cols-2 gap-6">
               <div className="p-8 rounded-3xl bg-green-50 border border-green-100">
                 <div className="flex items-center gap-3 mb-6">
-                  <CheckCircle2 className="w-6 h-6 text-green-600" />
+                  <CircleCheck className="w-6 h-6 text-green-600" />
                   <h3 className="text-xl font-bold text-green-900">Ventajas</h3>
                 </div>
                 <ul className="space-y-4 text-green-800">
@@ -231,7 +231,7 @@ function App() {
               
               <div className="p-8 rounded-3xl bg-orange-50 border border-orange-100">
                 <div className="flex items-center gap-3 mb-6">
-                  <AlertTriangle className="w-6 h-6 text-orange-600" />
+                  <TriangleAlert className="w-6 h-6 text-orange-600" />
                   <h3 className="text-xl font-bold text-orange-900">Limitaciones</h3>
                 </div>
                 <ul className="space-y-4 text-orange-800">

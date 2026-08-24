@@ -154,10 +154,10 @@ function App() {
                   A diferencia de Jacobi o Gauss-Seidel, donde se recalculan todas las variables en cada paso, en Relajación <strong>se modifica solo una variable por iteración</strong>. 
                 </p>
                 <p className="text-blue-100 leading-relaxed mb-4">
-                  El método consiste en llevar el sistema a la forma $A \cdot x - b = 0$. Luego, se divide cada ecuación $i$ por el valor $-a_{ii}$. Este paso garantiza la convergencia ya que fuerza a que la diagonal principal de la matriz equivalente tenga todos sus coeficientes iguales a $-1$.
+                  El método consiste en llevar el sistema a la forma A · x - b = 0. Luego, se divide cada ecuación i por el valor -aᵢᵢ. Este paso garantiza la convergencia ya que fuerza a que la diagonal principal de la matriz equivalente tenga todos sus coeficientes iguales a -1.
                 </p>
                 <p className="text-blue-100 leading-relaxed mb-4">
-                  Se denomina <strong>Residuo ($R_i$)</strong> al valor que toma cada una de estas ecuaciones igualadas a cero cuando se evalúa con una aproximación $x^{(k)}$. 
+                  Se denomina <strong>Residuo (Rᵢ)</strong> al valor que toma cada una de estas ecuaciones igualadas a cero cuando se evalúa con una aproximación x⁽ᵏ⁾. 
                 </p>
                 <div className="bg-white/10 p-4 rounded-lg font-mono text-center text-sm mb-4">
                   Rᵢ = -xᵢ + ∑ (bᵢⱼ · xⱼ) + cᵢ = 0

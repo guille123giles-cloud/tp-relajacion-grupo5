@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { 
-  Calculator, 
+  Calculator as CalcIcon, 
   ChevronRight, 
   BookOpen, 
   CheckCircle2, 
@@ -9,6 +9,7 @@ import {
   Lightbulb,
   ArrowRight
 } from 'lucide-react';
+import Calculator from './components/Calculator';
 
 function App() {
   const fadeUp = {
@@ -30,7 +31,7 @@ function App() {
     {
       num: 3,
       title: "Calcular los Residuos iniciales",
-      desc: "Usando los valores del vector inicial, se reemplazan las variables en las expresiones y se calcula numéricamente cada residuo."
+      desc: "Usando los valores del vector inicial (arrancador), se reemplazan las variables en las expresiones y se calcula numéricamente cada residuo."
     },
     {
       num: 4,
@@ -40,25 +41,25 @@ function App() {
     {
       num: 5,
       title: "Repetir el proceso",
-      desc: "Con el nuevo vector, se recalculan los residuos. Se repite hasta cumplir el criterio de paro. (Nota: el residuo de la variable recién modificada dará 0 en el paso siguiente)."
+      desc: "Con el nuevo vector, se recalculan los residuos. Se repite hasta cumplir el criterio de paro (error relativo o absoluto < ε). En la iteración siguiente, el residuo recién modificado será exactamente cero."
     }
   ];
 
   return (
     <div className="min-h-screen">
       {/* Navbar Glassmorphism */}
-      <nav className="fixed w-full z-50 bg-white/70 backdrop-blur-md border-b border-slate-200/50">
+      <nav className="fixed w-full z-50 bg-white/80 backdrop-blur-md border-b border-slate-200/50">
         <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
           <div className="flex items-center gap-2 text-blue-600 font-bold text-xl">
-            <Calculator className="w-6 h-6" />
+            <CalcIcon className="w-6 h-6" />
             <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-violet-600">
               Grupo 5
             </span>
           </div>
           <div className="hidden md:flex gap-8 text-sm font-medium text-slate-600">
-            <a href="#teoria" className="hover:text-blue-600 transition-colors">Teoría</a>
+            <a href="#teoria" className="hover:text-blue-600 transition-colors">Teoría Completa</a>
             <a href="#algoritmo" className="hover:text-blue-600 transition-colors">Algoritmo</a>
-            <a href="#ejercicio" className="hover:text-blue-600 transition-colors">Ejercicio</a>
+            <a href="#calculadora" className="hover:text-blue-600 transition-colors">Calculadora</a>
             <a href="#conclusiones" className="hover:text-blue-600 transition-colors">Conclusiones</a>
           </div>
         </div>
@@ -83,39 +84,86 @@ function App() {
             </span>
           </h1>
           <p className="text-xl text-slate-600 font-light max-w-2xl mx-auto mb-10 leading-relaxed">
-            Una solución elegante e iterativa para resolver sistemas de ecuaciones lineales, atacando siempre el mayor error del sistema.
+            Una solución elegante e iterativa para resolver sistemas de ecuaciones lineales, atacando siempre el mayor error del sistema en cada paso. Incluye calculadora paso a paso.
           </p>
           <div className="flex justify-center gap-4">
-            <a href="#algoritmo" className="px-8 py-3.5 bg-blue-600 text-white rounded-full font-medium hover:bg-blue-700 transition shadow-lg shadow-blue-600/20 flex items-center gap-2">
-              Ver el Paso a Paso <ArrowRight className="w-4 h-4" />
+            <a href="#teoria" className="px-8 py-3.5 bg-blue-600 text-white rounded-full font-medium hover:bg-blue-700 transition shadow-lg shadow-blue-600/20 flex items-center gap-2">
+              Ver Teoría Completa <ArrowRight className="w-4 h-4" />
             </a>
           </div>
         </motion.div>
       </section>
 
-      <main className="max-w-4xl mx-auto px-6 pb-24 space-y-32">
+      <main className="max-w-5xl mx-auto px-6 pb-24 space-y-32">
         
-        {/* Teoría */}
+        {/* Teoría Completa */}
         <section id="teoria" className="scroll-mt-24">
           <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
             <div className="flex items-center gap-3 mb-8">
               <div className="w-10 h-10 rounded-xl bg-violet-100 flex items-center justify-center text-violet-600">
                 <Lightbulb className="w-5 h-5" />
               </div>
-              <h2 className="text-3xl font-bold text-slate-900">Conceptos Fundamentales</h2>
+              <h2 className="text-3xl font-bold text-slate-900">Desarrollo Teórico Completo</h2>
             </div>
             
-            <div className="grid md:grid-cols-2 gap-6">
+            <div className="space-y-8">
               <div className="p-8 rounded-3xl bg-white border border-slate-100 shadow-xl shadow-slate-200/40">
-                <h3 className="text-xl font-semibold text-slate-900 mb-4">¿Qué es?</h3>
+                <h3 className="text-2xl font-bold text-slate-800 mb-4">1. Resolución de Sistemas de Ecuaciones Lineales</h3>
+                <p className="text-slate-600 leading-relaxed mb-4">
+                  Los problemas de sistemas de ecuaciones lineales se presentan de la forma general: 
+                </p>
+                <div className="bg-slate-50 p-4 rounded-lg font-mono text-center text-lg font-semibold text-slate-800 mb-4">
+                  A · x = b
+                </div>
+                <p className="text-slate-600 leading-relaxed mb-4">
+                  Donde <strong>A</strong> es una matriz cuadrada (n×n) correspondiente a los coeficientes del problema, <strong>x</strong> es el vector de las incógnitas y <strong>b</strong> es el vector solución de los términos independientes.
+                </p>
+                <p className="text-slate-600 leading-relaxed mb-4">
+                  Los métodos de solución se dividen en dos grandes grupos:
+                </p>
+                <ul className="list-disc pl-6 space-y-2 text-slate-600 mb-6">
+                  <li><strong>Métodos exactos o directos:</strong> Permiten obtener la solución del sistema en un número finito de operaciones (ej: regla de Cramer, método de Gauss, Gauss-Jordan, y factorizaciones L·V o L·U / Crout).</li>
+                  <li><strong>Métodos aproximados o iterativos:</strong> Calculan progresivamente aproximaciones a la solución. Se repite un proceso de mejora hasta que el resultado satisface ciertos requisitos (ej: Jacobi, Gauss-Seidel, Relajación).</li>
+                </ul>
+              </div>
+
+              <div className="p-8 rounded-3xl bg-white border border-slate-100 shadow-xl shadow-slate-200/40">
+                <h3 className="text-2xl font-bold text-slate-800 mb-4">2. Fundamentos de los Métodos Iterativos</h3>
+                <p className="text-slate-600 leading-relaxed mb-4">
+                  Para poder comenzar a aplicar un método iterativo, se precisa de un vector de valores iniciales (o vector arrancador) $x^{(0)}$. A través de una función o relación matemática, se genera la sucesión de vectores $x^{(k)}$ que eventualmente converge a la solución exacta.
+                </p>
+                <p className="text-slate-600 leading-relaxed mb-4">
+                  La idea matricial común es descomponer la matriz <strong>A</strong> de la forma $A = R - S$, donde $R$ es una matriz fácilmente invertible (ej. diagonal o triangular). Reemplazando en el sistema original:
+                </p>
+                <div className="bg-slate-50 p-4 rounded-lg font-mono text-center text-sm text-slate-800 mb-4 leading-loose">
+                  (R - S) · x = b <br/>
+                  R·x - S·x = b <br/>
+                  R·x = S·x + b <br/>
+                  x = [I - R⁻¹·A]·x + R⁻¹·b
+                </div>
                 <p className="text-slate-600 leading-relaxed">
-                  Es un <strong>método iterativo</strong>. A diferencia de métodos exactos, parte de un vector inicial y realiza aproximaciones sucesivas. Su distinción clave es que <strong>en cada iteración se modifica una sola variable</strong>: la que tiene el mayor "error" (Residuo).
+                  Llamando $M = I - R⁻¹·A$ y $c = R⁻¹·b$, obtenemos el <strong>esquema iterativo general</strong>: $x^{(k+1)} = M \cdot x^{(k)} + c$. 
+                  <br/><br/>
+                  <strong>Teorema de Convergencia:</strong> Este esquema es convergente si y sólo si el <strong>radio espectral</strong> de la matriz M (su mayor autovalor en valor absoluto) es menor que la unidad.
                 </p>
               </div>
+
               <div className="p-8 rounded-3xl bg-gradient-to-br from-blue-600 to-violet-600 text-white shadow-xl shadow-blue-600/20">
-                <h3 className="text-xl font-semibold mb-4 text-white">Condición de Convergencia</h3>
+                <h3 className="text-2xl font-bold mb-4">3. El Método de Relajación en Detalle</h3>
+                <p className="text-blue-100 leading-relaxed mb-4">
+                  A diferencia de Jacobi o Gauss-Seidel, donde se recalculan todas las variables en cada paso, en Relajación <strong>se modifica solo una variable por iteración</strong>. 
+                </p>
+                <p className="text-blue-100 leading-relaxed mb-4">
+                  El método consiste en llevar el sistema a la forma $A \cdot x - b = 0$. Luego, se divide cada ecuación $i$ por el valor $-a_{ii}$. Este paso garantiza la convergencia ya que fuerza a que la diagonal principal de la matriz equivalente tenga todos sus coeficientes iguales a $-1$.
+                </p>
+                <p className="text-blue-100 leading-relaxed mb-4">
+                  Se denomina <strong>Residuo ($R_i$)</strong> al valor que toma cada una de estas ecuaciones igualadas a cero cuando se evalúa con una aproximación $x^{(k)}$. 
+                </p>
+                <div className="bg-white/10 p-4 rounded-lg font-mono text-center text-sm mb-4">
+                  Rᵢ = -xᵢ + ∑ (bᵢⱼ · xⱼ) + cᵢ = 0
+                </div>
                 <p className="text-blue-100 leading-relaxed">
-                  Para que el método funcione correctamente, es vital llevar los coeficientes de la diagonal principal a un valor de <strong>-1</strong>. Esto se logra dividiendo cada ecuación entera por <code>-aᵢᵢ</code>.
+                  <strong>El gran secreto del método:</strong> En cada iteración, se analiza el vector de Residuos. Se busca el residuo mayor en valor absoluto, por ejemplo $R_k$. Esto nos indica que la variable $x_k$ es la que tiene mayor error. Luego, se "relaja" (corrige) la variable actual sumándole exactamente el valor de su residuo: $x_k^{(nueva)} = x_k^{(vieja)} + R_k$. ¡Al evaluar el sistema con el nuevo valor, el residuo $R_k$ pasará a ser matemáticamente cero!
                 </p>
               </div>
             </div>
@@ -148,94 +196,19 @@ function App() {
           </motion.div>
         </section>
 
-        {/* Ejercicio */}
-        <section id="ejercicio" className="scroll-mt-24">
+        {/* Calculadora (Ejercicio Dinámico) */}
+        <section id="calculadora" className="scroll-mt-24">
           <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
-            <h2 className="text-3xl font-bold text-slate-900 mb-8">Ejercicio Resuelto</h2>
-            
-            <div className="p-8 rounded-3xl bg-white border border-slate-100 shadow-xl shadow-slate-200/40">
-              <div className="grid md:grid-cols-2 gap-8 mb-8">
-                <div>
-                  <h3 className="text-sm font-bold text-slate-400 uppercase tracking-wider mb-4">Sistema Original</h3>
-                  <div className="font-mono text-sm bg-slate-50 p-6 rounded-xl border border-slate-100 text-slate-700 leading-loose">
-                    10x₁ + 3x₂ + x₃ = 7 <br/>
-                    2x₁ + 15x₂ + 4x₃ = -16 <br/>
-                    x₁ + 2x₂ + 20x₃ = 57
-                  </div>
-                </div>
-                <div>
-                  <h3 className="text-sm font-bold text-slate-400 uppercase tracking-wider mb-4">Ecuaciones de Residuo</h3>
-                  <div className="font-mono text-sm bg-slate-50 p-6 rounded-xl border border-slate-100 text-slate-700 leading-loose">
-                    R₁ = -x₁ - 0.3x₂ - 0.1x₃ + 0.7 = 0 <br/>
-                    R₂ = -0.133x₁ - x₂ - 0.266x₃ - 1.066 = 0 <br/>
-                    R₃ = -0.05x₁ - 0.1x₂ - x₃ + 2.85 = 0
-                  </div>
-                </div>
+            <div className="flex items-center gap-3 mb-8">
+              <div className="w-10 h-10 rounded-xl bg-indigo-100 flex items-center justify-center text-indigo-600">
+                <CalcIcon className="w-5 h-5" />
               </div>
-
-              <div className="overflow-x-auto rounded-xl border border-slate-200">
-                <table className="w-full text-left text-sm">
-                  <thead className="bg-slate-50 text-slate-600 font-semibold border-b border-slate-200">
-                    <tr>
-                      <th className="p-4">Iter</th>
-                      <th className="p-4">x₁</th>
-                      <th className="p-4">R₁</th>
-                      <th className="p-4">x₂</th>
-                      <th className="p-4">R₂</th>
-                      <th className="p-4">x₃</th>
-                      <th className="p-4">R₃</th>
-                      <th className="p-4">Acción</th>
-                    </tr>
-                  </thead>
-                  <tbody className="divide-y divide-slate-100 text-slate-700">
-                    <tr className="hover:bg-slate-50/50 transition-colors">
-                      <td className="p-4 font-medium">0</td>
-                      <td className="p-4">0.8</td>
-                      <td className="p-4">0.16</td>
-                      <td className="p-4">-1.7</td>
-                      <td className="p-4">-0.1374</td>
-                      <td className="p-4">2.5</td>
-                      <td className="p-4 font-bold text-pink-500 bg-pink-50/50 rounded-lg">0.48</td>
-                      <td className="p-4 text-xs">R₃ es mayor. x₃ = 2.5 + 0.48 = <span className="font-bold">2.98</span></td>
-                    </tr>
-                    <tr className="hover:bg-slate-50/50 transition-colors">
-                      <td className="p-4 font-medium">1</td>
-                      <td className="p-4">0.8</td>
-                      <td className="p-4">0.112</td>
-                      <td className="p-4">-1.7</td>
-                      <td className="p-4 font-bold text-pink-500 bg-pink-50/50 rounded-lg">-0.26508</td>
-                      <td className="p-4">2.98</td>
-                      <td className="p-4">0</td>
-                      <td className="p-4 text-xs">R₂ es mayor. x₂ = -1.7 - 0.265 = <span className="font-bold">-1.96508</span></td>
-                    </tr>
-                    <tr className="hover:bg-slate-50/50 transition-colors">
-                      <td className="p-4 font-medium">2</td>
-                      <td className="p-4">0.8</td>
-                      <td className="p-4 font-bold text-pink-500 bg-pink-50/50 rounded-lg">0.1915</td>
-                      <td className="p-4">-1.96508</td>
-                      <td className="p-4">0</td>
-                      <td className="p-4">2.98</td>
-                      <td className="p-4">0.0265</td>
-                      <td className="p-4 text-xs">R₁ es mayor. x₁ = 0.8 + 0.1915 = <span className="font-bold">0.9915</span></td>
-                    </tr>
-                    <tr className="hover:bg-slate-50/50 transition-colors">
-                      <td className="p-4 font-medium">3</td>
-                      <td className="p-4">0.9915</td>
-                      <td className="p-4">0</td>
-                      <td className="p-4">-1.96508</td>
-                      <td className="p-4 font-bold text-pink-500 bg-pink-50/50 rounded-lg">-0.02546</td>
-                      <td className="p-4">2.98</td>
-                      <td className="p-4">0.01693</td>
-                      <td className="p-4 text-xs">R₂ es mayor. x₂ = -1.96508 - 0.025 = <span className="font-bold">-1.99054</span></td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-              <div className="mt-6 flex items-center gap-2 text-sm text-slate-500 bg-slate-50 p-4 rounded-xl border border-slate-100">
-                <CheckCircle2 className="w-5 h-5 text-green-500" />
-                <p>La solución exacta es x₁=1, x₂=-2, x₃=3. ¡La convergencia es excelente tras solo 4 pasos!</p>
-              </div>
+              <h2 className="text-3xl font-bold text-slate-900">Calculadora del Método</h2>
             </div>
+            <p className="text-slate-600 mb-4">
+              A continuación presentamos una herramienta interactiva. Por defecto está cargado el ejercicio de la cátedra para que puedas verificar los pasos, pero puedes modificar cualquier valor para resolver nuevos sistemas (hasta 10 variables) y practicar para el parcial.
+            </p>
+            <Calculator />
           </motion.div>
         </section>
 
@@ -250,9 +223,9 @@ function App() {
                   <h3 className="text-xl font-bold text-green-900">Ventajas</h3>
                 </div>
                 <ul className="space-y-4 text-green-800">
-                  <li className="flex gap-3"><span className="font-bold">✓</span> Es muy intuitivo porque siempre ataca el mayor "error" del sistema.</li>
-                  <li className="flex gap-3"><span className="font-bold">✓</span> Puede converger más rápido que Jacobi o Gauss-Seidel al tomar decisiones informadas.</li>
-                  <li className="flex gap-3"><span className="font-bold">✓</span> Solo se actualiza una variable por iteración, facilitando el cálculo a mano.</li>
+                  <li className="flex gap-3"><span className="font-bold">✓</span> Es muy intuitivo porque siempre ataca el mayor "error" del sistema, lo que facilita el cómputo manual.</li>
+                  <li className="flex gap-3"><span className="font-bold">✓</span> Puede converger significativamente más rápido que Jacobi o Gauss-Seidel al tomar decisiones informadas sobre qué corregir primero.</li>
+                  <li className="flex gap-3"><span className="font-bold">✓</span> Permite suspender el proceso en cualquier iteración cuando se considera que el error de los residuos es aceptable.</li>
                 </ul>
               </div>
               
@@ -262,8 +235,8 @@ function App() {
                   <h3 className="text-xl font-bold text-orange-900">Limitaciones</h3>
                 </div>
                 <ul className="space-y-4 text-orange-800">
-                  <li className="flex gap-3"><span className="font-bold">!</span> Requiere que la diagonal principal pueda llevarse a -1, idealmente en sistemas diagonalmente dominantes.</li>
-                  <li className="flex gap-3"><span className="font-bold">!</span> En sistemas inmensos, buscar el mayor residuo en cada iteración por computadora puede ser costoso computacionalmente si no se aplican técnicas de optimización.</li>
+                  <li className="flex gap-3"><span className="font-bold">!</span> Requiere que la diagonal principal no tenga ceros y pueda llevarse a -1, operando mejor en sistemas diagonalmente dominantes.</li>
+                  <li className="flex gap-3"><span className="font-bold">!</span> En sistemas inmensos resueltos por computadora, la búsqueda secuencial del mayor residuo en cada iteración puede consumir mucha CPU sin estructuras de datos óptimas.</li>
                 </ul>
               </div>
             </div>

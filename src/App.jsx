@@ -130,7 +130,7 @@ function App() {
               <div className="p-8 rounded-3xl bg-white border border-slate-100 shadow-xl shadow-slate-200/40">
                 <h3 className="text-2xl font-bold text-slate-800 mb-4">2. Fundamentos de los Métodos Iterativos</h3>
                 <p className="text-slate-600 leading-relaxed mb-4">
-                  Para poder comenzar a aplicar un método iterativo, se precisa de un vector de valores iniciales (o vector arrancador) $x^{(0)}$. A través de una función o relación matemática, se genera la sucesión de vectores $x^{(k)}$ que eventualmente converge a la solución exacta.
+                  Para poder comenzar a aplicar un método iterativo, se precisa de un vector de valores iniciales (o vector arrancador) x⁽⁰⁾. A través de una función o relación matemática, se genera la sucesión de vectores x⁽ᵏ⁾ que eventualmente converge a la solución exacta.
                 </p>
                 <p className="text-slate-600 leading-relaxed mb-4">
                   La idea matricial común es descomponer la matriz <strong>A</strong> de la forma $A = R - S$, donde $R$ es una matriz fácilmente invertible (ej. diagonal o triangular). Reemplazando en el sistema original:

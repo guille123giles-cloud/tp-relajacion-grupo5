@@ -20,28 +20,60 @@ function App() {
   const steps = [
     {
       num: 1,
-      title: "Garantizar la convergencia",
-      desc: "Se divide cada ecuación del sistema original por el valor negativo de su coeficiente de la diagonal principal (-aᵢᵢ). Así, la diagonal principal pasará a valer -1."
+      title: 'Garantizar la convergencia',
+      desc: 'Se divide cada ecuación del sistema original por el valor negativo de su coeficiente de la diagonal principal (-aᵢᵢ). Así, la diagonal principal pasará a valer -1.',
+      example: (
+        <div className="mt-2 bg-slate-50 p-4 rounded-xl border border-slate-200 font-mono text-sm">
+          <p className="text-slate-500 mb-2">Ej. (10x₁ + 3x₂ + x₃ = 7):</p>
+          <p className="text-slate-800">Dividimos todo por -10:</p>
+          <p className="text-blue-600 font-semibold mt-1">-x₁ - 0.3x₂ - 0.1x₃ = -0.7</p>
+        </div>
+      )
     },
     {
       num: 2,
-      title: "Definir los Residuos (Rᵢ)",
-      desc: "Se igualan todas las ecuaciones a cero. La expresión resultante es el Residuo Rᵢ asociado a la variable xᵢ. Toman la forma: Rᵢ = -xᵢ + ... = 0"
+      title: 'Definir los Residuos (Rᵢ)',
+      desc: 'Se igualan todas las ecuaciones a cero. La expresión resultante es el Residuo Rᵢ asociado a la variable xᵢ.',
+      example: (
+        <div className="mt-2 bg-slate-50 p-4 rounded-xl border border-slate-200 font-mono text-sm">
+          <p className="text-slate-800">Igualando a cero la ec. anterior:</p>
+          <p className="text-blue-600 font-semibold mt-1">R₁ = -x₁ - 0.3x₂ - 0.1x₃ + 0.7 = 0</p>
+        </div>
+      )
     },
     {
       num: 3,
-      title: "Calcular los Residuos iniciales",
-      desc: "Usando los valores del vector inicial (arrancador), se reemplazan las variables en las expresiones y se calcula numéricamente cada residuo."
+      title: 'Calcular los Residuos iniciales',
+      desc: 'Usando los valores del vector inicial (arrancador), se reemplazan las variables en las expresiones y se calcula numéricamente cada residuo.',
+      example: (
+        <div className="mt-2 bg-slate-50 p-4 rounded-xl border border-slate-200 font-mono text-sm">
+          <p className="text-slate-800">Si x⁽⁰⁾ = [0.8, -1.7, 2.5]ᵀ :</p>
+          <p className="text-blue-600 font-semibold mt-1">R₁ = -(0.8) - 0.3(-1.7) - 0.1(2.5) + 0.7 = 0.16</p>
+          <p className="text-slate-500 mt-2 text-xs">De igual forma: R₂ = -0.1374 y R₃ = 0.48</p>
+        </div>
+      )
     },
     {
       num: 4,
-      title: "Actualizar la variable",
-      desc: "Se toma el residuo mayor en valor absoluto. El nuevo valor de la variable asociada se obtiene sumándole dicho residuo con su signo: xᵢ⁽ᵏ⁺¹⁾ = xᵢ⁽ᵏ⁾ + Rᵢ⁽ᵏ⁾. Las demás variables no cambian."
+      title: 'Actualizar la variable',
+      desc: 'Se toma el residuo mayor en valor absoluto. El nuevo valor de la variable asociada se obtiene sumándole dicho residuo con su signo.',
+      example: (
+        <div className="mt-2 bg-slate-50 p-4 rounded-xl border border-slate-200 font-mono text-sm">
+          <p className="text-slate-800">El mayor residuo es R₃ (0.48). Actualizamos x₃:</p>
+          <p className="text-blue-600 font-semibold mt-1">x₃⁽¹⁾ = x₃⁽⁰⁾ + R₃ = 2.5 + 0.48 = 2.98</p>
+        </div>
+      )
     },
     {
       num: 5,
-      title: "Repetir el proceso",
-      desc: "Con el nuevo vector, se recalculan los residuos. Se repite hasta cumplir el criterio de paro (error relativo o absoluto < ε). En la iteración siguiente, el residuo recién modificado será exactamente cero."
+      title: 'Repetir el proceso',
+      desc: 'Con el nuevo vector, se recalculan los residuos. Se repite hasta cumplir el criterio de paro. En la iteración siguiente, el residuo recién modificado será exactamente cero.',
+      example: (
+        <div className="mt-2 bg-slate-50 p-4 rounded-xl border border-slate-200 font-mono text-sm">
+          <p className="text-slate-800">Nuevo vector x⁽¹⁾ = [0.8, -1.7, 2.98]ᵀ.</p>
+          <p className="text-blue-600 font-semibold mt-1">Al recalcular, R₃ será exactamente 0.</p>
+        </div>
+      )
     }
   ];
 
@@ -182,13 +214,16 @@ function App() {
 
             <div className="space-y-4">
               {steps.map((step, idx) => (
-                <div key={idx} className="group flex gap-6 p-6 rounded-2xl bg-white border border-slate-100 shadow-sm hover:shadow-xl hover:shadow-slate-200/50 transition-all">
+                <div key={idx} className="group flex flex-col md:flex-row gap-6 p-6 rounded-2xl bg-white border border-slate-100 shadow-sm hover:shadow-xl hover:shadow-slate-200/50 transition-all">
                   <div className="flex-shrink-0 w-12 h-12 rounded-full bg-blue-50 text-blue-600 flex items-center justify-center font-bold text-lg group-hover:bg-blue-600 group-hover:text-white transition-colors">
                     {step.num}
                   </div>
-                  <div>
+                  <div className="flex-1">
                     <h4 className="text-lg font-semibold text-slate-900 mb-2">{step.title}</h4>
                     <p className="text-slate-600 leading-relaxed">{step.desc}</p>
+                  </div>
+                  <div className="flex-1 md:border-l md:border-slate-100 md:pl-6">
+                    {step.example}
                   </div>
                 </div>
               ))}

@@ -165,7 +165,7 @@ function App() {
                   Para poder comenzar a aplicar un método iterativo, se precisa de un vector de valores iniciales (o vector arrancador) x⁽⁰⁾. A través de una función o relación matemática, se genera la sucesión de vectores x⁽ᵏ⁾ que eventualmente converge a la solución exacta.
                 </p>
                 <p className="text-slate-600 leading-relaxed mb-4">
-                  La idea matricial común es descomponer la matriz <strong>A</strong> de la forma $A = R - S$, donde $R$ es una matriz fácilmente invertible (ej. diagonal o triangular). Reemplazando en el sistema original:
+                  La idea matricial común es descomponer la matriz <strong>A</strong> de la forma A = R - S, donde R es una matriz fácilmente invertible (ej. diagonal o triangular). Reemplazando en el sistema original:
                 </p>
                 <div className="bg-slate-50 p-4 rounded-lg font-mono text-center text-sm text-slate-800 mb-4 leading-loose">
                   (R - S) · x = b <br/>
